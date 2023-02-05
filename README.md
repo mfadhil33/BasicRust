@@ -30,13 +30,7 @@ Hello, world!
 If you don't have cargo, you can download the [latest release](https://github.com/Dhravya/readme-generator/releases)
 This isn't recommended, because it won't be registered as a binary and you'll have to run the exe file
 
-For contributing:
 
-```
-git clone https://github.com/Dhravya/readme-generator.git
-cd Readme Generator
-cargo install
-```
 
 ### Usage
 windows:
