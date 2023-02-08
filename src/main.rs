@@ -104,32 +104,264 @@
 
 // }
 
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
+
+// fn main(){
+
+//   let mut nilai = HashMap::new();
+//   nilai.insert(String::from("Pemrograman Rust"), 100);
+//   nilai.insert(String::from("Pemrograman Js"), 80);
+
+//   // mengakesek value has map
+//     println!("{:?}", nilai.get(&String::from("Pemrograman Rust")));
+//  // println!("{:?}", nilai);
+
+//   // buat default nilai pada key jika nilai ny tidak ada
+//   nilai.entry(String::from("Pemrograman Js")).or_insert(85);
+//   nilai.entry(String::from("Pemrograman Java")).or_insert(100);
+//   println!("{:?}", nilai);
+
+//    // memecah sebuah string pada white space
+//    let a = "nama saya adalah muhammad fadhil arya putra";
+
+//    let mut result = HashMap::new();
+
+//     for b in a.split_whitespace(){
+//       let count = result.entry(b).or_insert(0);
+//       *count += 1;
+//     }
+//     println!("{:?}", result);
+// }
+
+// fn main(){
+  
+//   panic!("panic!!");
+// }
+
+
+// use core::panic;
+// use std::{fs::File, io::ErrorKind};
+
+// fn main(){
+  
+//     File::open("hello.txt").unwrap_or_else(|error| {
+    
+//     if error.kind() == ErrorKind::NotFound {
+//       File::create("hello.txt").unwrap_or_else(|error| {
+//         panic!("{:?}", error);
+//       })
+//     } else {
+//         panic!("{:?}", error);
+//     }
+    
+//     });
+    
+
+//   // let file =  match file {
+//   //     Ok(file) => file,
+//   //     Err(error) => {
+//   //      panic!("Problem: {:?}", error);
+//   //     }
+//   // };
+
+// use core::num::dec2flt::float;
+// use std::{fs::File, io::ErrorKind, num};
+
+//   // Ok(T);
+//   // Err(E);
+//  }
+// fn main(){
+
+
+//    let file = File::open("file.txt");
+//    let file = match file {
+//        Ok(file) => file,
+//        Err(error) => {
+//        panic!("Problem: {:?}", error);
+//       }
+//    };
+// }
+
+// fn main(){
+
+//    // selain unwrap else
+//    File::open("hello.txt").expect("File not found");
+
+//     File::open("hello.txt").unwrap_or_else(|error| {
+    
+//      if error.kind() == ErrorKind::NotFound {
+    
+//       File::create("hello.txt").unwrap_or_else(|error| {
+      
+//         panic!("{:?}", error);
+//       })
+//     }else {
+    
+//       panic!("{:?}", error);
+//     }
+//     });
+// }
+
+// fn main(){
+
+//   File::open("hello.txt").expect("file not found");
+
+
+// }
+
+
+// generic types & trait
+// fn main() {
+
+//    let numbers = vec![1, 2, 3, 4, 5];
+//    let mut largest = numbers[0];
+
+//    for number in numbers {
+//    if number > largest {
+//    largest =  number;
+//   }
+//   }
+//    print!("{}", largest);
+// }
+
+// menggunakan non generic type
+// fn largest(list: &[i32]) -> i32{
+//  let mut largest = list[0];
+
+//    for &number in list {
+//     if number > largest {
+//      largest = number
+//     }
+//   }
+//   largest
+// }
+
+// fn main() {
+//   let numbers = vec![1, 2, 3, 4, 5];
+//   let result = largest(&numbers);
+//   println!("{}", result);
+// }
+
+
+// menggunakan generic type
+// fn largest<T>(list: &[T]) -> T {
+//      let mut largest = list[0];
+
+//      for &item in list {
+//      if item > largest {
+//        largest = item
+//     }
+//     }
+//     largest
+// }
+
+// fn main() {
+//   let numbers = vec![10, 1, 2];
+//   let largest_number  = largest(&numbers);
+//   println!("{}", largest_number);
+
+//    let worlds = vec!["hello", "padhil"];
+//    let largest_words = largest(&worlds);
+//    println!("{}", largest_words);
+// }
+
+// generic type in struct
+// struct Point<T> {
+//    x: T,
+//    y: T
+// }
+
+// fn main() {
+//  let integer = Point {x: 1, y:2 };
+//   let float  = Point { x: 1.2, y: 2.1};
+
+//   println!("{} {}", integer.x, float.y);
+// }
+
+// in enum definition
+// enum Result<T, E> {
+
+//   Ok(T),
+//   Err(E),
+// }
+
+// in method definition 
+// struct Point<T>{
+//   x: T,
+//   y: T
+// }
+
+// impl <T> Point <T> {
+//     fn print_x(&self) -> &T {
+//      &self.x
+//     }
+// }
+// fn main() {
+
+//     let integer = Point {x: 1, y: 2};
+//     let float = Point { x: 1.2, y: 2.1};
+
+//     println!("{} {} {}", integer.x, float.y, integer.print_x());
+  
+// }
+
+// multi generic  types with method 
+struct Point <T, U> {
+  x: T,
+  y: U
+}
+
+impl <T, U> Point <T, U > {
+    
+   fn mixup<V, W>(self, other: Point<V, W>) ->  Point <T, W > {
+    Point { 
+      
+      
+     x: self.x,
+     y: other.y
+    
+    }
+  }
+}
+
+// fn main () {
+
+//   let p1 = Point { x: 1, y:2 };
+//   let p2 =  Point { x: "Hello", y: "padhil"};
+//   let p3 = p1.mixup(p2);
+
+//     println!("{} {}", p3.x, p3.y);
+// }
+
+// traits
+trait Summary {
+
+ fn summarize(&self) -> String;
+
+}
+
+struct Article {
+  title: String,
+  author: String
+}
+
+impl Summary for Article {
+    fn summarize(&self) -> String {
+        format!("{} author of {}", self.author, self.title)
+    }
+}
 
 fn main(){
 
-  let mut nilai = HashMap::new();
-  nilai.insert(String::from("Pemrograman Rust"), 100);
-  nilai.insert(String::from("Pemrograman Js"), 80);
+  let first_article =  Article {
+  
+     title: String::from("Belajar Bahasa pemrograman  Rust"),
+     author: String::from("Rust")
+  
+  };
 
-  // mengakesek value has map
-    println!("{:?}", nilai.get(&String::from("Pemrograman Rust")));
- // println!("{:?}", nilai);
+    println!("{}", first_article.summarize());
 
-  // buat default nilai pada key jika nilai ny tidak ada
-  nilai.entry(String::from("Pemrograman Js")).or_insert(85);
-  nilai.entry(String::from("Pemrograman Java")).or_insert(100);
-  println!("{:?}", nilai);
 
-   // memecah sebuah string pada white space
-   let a = "nama saya adalah muhammad fadhil arya putra";
-
-   let mut result = HashMap::new();
-
-    for b in a.split_whitespace(){
-      let count = result.entry(b).or_insert(0);
-      *count += 1;
-    }
-    println!("{:?}", result);
 }
